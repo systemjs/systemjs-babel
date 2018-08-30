@@ -10,7 +10,7 @@ Currently does not provide support for any other plugins, although PRs are welco
 ```html
 <script src="systemjs/dist/system.js"></script>
 <script src="systemjs/dist/extras/transform.js"></script>
-<script src="babel-transform.js"></script>
+<script src="dist/babel-transform.js"></script>
 <script>
   System.import('./es-module.js');
 </script>
