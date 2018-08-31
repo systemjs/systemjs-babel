@@ -1,15 +1,17 @@
 {
-  "name": "systemjs-plugin-babel",
-  "version": "2.0.0",
+  "name": "systemjs-transform-babel",
+  "main": "dist/babel-transform.js",
+  "files": ["dist/babel-transform.js"],
+  "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "http://github.com/systemjs/plugin-babel.git"
+    "url": "http://github.com/systemjs/systemjs-transform-babel.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/systemjs/plugin-babel/issues"
+    "url": "https://github.com/systemjs/systemjs-transform-babel/issues"
   },
-  "homepage": "https://github.com/systemjs/plugin-babel",
+  "homepage": "https://github.com/systemjs/systemjs-transform-babel",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
