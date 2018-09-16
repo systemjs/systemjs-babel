@@ -16,11 +16,6 @@ Currently does not provide support for any other plugins, although PRs are welco
 </script>
 ```
 
-    }
-  }
-});
-```
-
 ## LICENSE
 
 MIT
