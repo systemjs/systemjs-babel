@@ -1,8 +1,10 @@
 {
   "name": "systemjs-transform-babel",
   "main": "dist/babel-transform.js",
-  "files": ["dist/babel-transform.js"],
-  "version": "0.1.0",
+  "files": [
+    "dist/babel-transform.js"
+  ],
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "http://github.com/systemjs/systemjs-transform-babel.git"
@@ -13,10 +15,10 @@
   },
   "homepage": "https://github.com/systemjs/systemjs-transform-babel",
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-syntax-import-meta": "^7.0.0",
-    "@babel/plugin-transform-modules-systemjs": "^7.0.0",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/plugin-transform-modules-systemjs": "^7.3.4",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },
