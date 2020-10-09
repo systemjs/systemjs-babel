@@ -13,6 +13,10 @@ Specifically does not provide configuration hooks, because no type checking is p
 
 ## Usage
 
+```
+npm install systemjs-babel
+```
+
 ```html
 <script src="systemjs/dist/s.js"></script>
 <script src="dist/systemjs-babel.js"></script>
