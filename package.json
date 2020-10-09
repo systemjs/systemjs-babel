@@ -1,10 +1,10 @@
 {
   "name": "systemjs-babel",
-  "main": "dist/systemjs-babel",
+  "version": "0.2.0",
+  "main": "dist/systemjs-babel.js",
   "files": [
     "dist/systemjs-babel.js"
   ],
-  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "http://github.com/systemjs/systemjs-babel.git"
