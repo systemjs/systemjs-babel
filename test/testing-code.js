@@ -1,5 +1,5 @@
 export async function p() {
-  return (await import('./testing-dep.js')).p;
+  return (await import('./testing-dep.ts')).p;
 }
 
 function * responseTime (next) {

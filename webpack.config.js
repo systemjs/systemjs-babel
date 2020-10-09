@@ -1,8 +1,8 @@
 module.exports = {
   mode: 'production',
-  entry: './src/babel-transform.js',
+  entry: './src/systemjs-babel.js',
   output: {
-    filename: 'babel-transform.js'
+    filename: 'systemjs-babel.js'
   },
   resolve: {
     aliasFields: ['browser']
