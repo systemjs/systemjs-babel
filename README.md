@@ -9,6 +9,8 @@ The source transform is skipped for all `System.register` sources, thereby allow
 
 Specifically does not provide configuration hooks, because no type checking is performed and this is designed to handle current syntax only.
 
+**Not Suitable for Production Workflows**
+
 ## Usage
 
 ```html
