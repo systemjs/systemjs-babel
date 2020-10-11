@@ -1,6 +1,7 @@
 {
   "name": "systemjs-babel",
-  "version": "0.2.0",
+  "version": "0.2.1",
+  "type": "script",
   "main": "dist/systemjs-babel.js",
   "files": [
     "dist/systemjs-babel.js"
@@ -28,5 +29,8 @@
   },
   "scripts": {
     "build": "webpack"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.10.5"
   }
 }

@@ -7,8 +7,9 @@ import babelPluginClassProperties from '@babel/plugin-proposal-class-properties'
 import babelPluginNumericSeparator from '@babel/plugin-proposal-numeric-separator';
 import pluginProposalExportDefaultFrom from '@babel/plugin-proposal-export-default-from';
 import pluginProposalExportNamespaceFrom from '@babel/plugin-proposal-export-namespace-from';
-import pluginTransformModulesSystemJS from '@babel/plugin-transform-modules-systemjs';
+import pluginTransformModulesSystemJS from './babel-plugin-transform-modules-systemjs-patched.js';
 import pluginProposalDynamicImport from '@babel/plugin-proposal-dynamic-import';
+import pluginProposalDecorators from '@babel/plugin-proposal-decorators';
 
 var plugins = [
   pluginProposalExportDefaultFrom,
@@ -16,6 +17,7 @@ var plugins = [
   babelPluginClassProperties,
   babelPluginNumericSeparator,
   pluginProposalDynamicImport,
+  [pluginProposalDecorators, { decoratorsBeforeExport: true }],
   pluginTransformModulesSystemJS,
 ];
 var tsPreset = [[babelPresetTypeScript, {
