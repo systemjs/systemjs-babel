@@ -1,6 +1,6 @@
 {
   "name": "systemjs-babel",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "script",
   "main": "dist/systemjs-babel.js",
   "files": [
