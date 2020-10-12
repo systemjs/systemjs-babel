@@ -64,9 +64,9 @@ systemJSPrototype.fetch = function (url, options) {
           presets: tsUrls.test(url) ? tsPreset : []
         }, function (err, result) {
           if (err)
-            reject(err);
-          else
-            resolve(new Response(new Blob([result.code], { type: 'application/javascript' })));
+            return reject(err);
+          const code = result.code + '\n//# sourceURL=' + u + '!system';
+          resolve(new Response(new Blob([code], { type: 'application/javascript' })));
         });
       })
     });
