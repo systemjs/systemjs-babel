@@ -54,7 +54,7 @@ systemJSPrototype.fetch = function (url, options) {
           filename: url,
           sourceMaps: 'inline',
           ast: false,
-          compact: true,
+          compact: false,
           sourceType: 'module',
           parserOpts: {
             plugins: stage3Syntax,
