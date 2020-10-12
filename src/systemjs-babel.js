@@ -2,28 +2,33 @@
  * SystemJS format Babel transformer
  */
 import * as babel from '@babel/core';
-import babelPresetTypeScript from '@babel/preset-typescript';
-import babelPluginClassProperties from '@babel/plugin-proposal-class-properties';
+import babelPluginTransformTypeScript from '@babel/plugin-transform-typescript';
+import babelPluginSyntaxClassProperties from '@babel/plugin-syntax-class-properties';
 import babelPluginNumericSeparator from '@babel/plugin-proposal-numeric-separator';
 import pluginProposalExportDefaultFrom from '@babel/plugin-proposal-export-default-from';
 import pluginProposalExportNamespaceFrom from '@babel/plugin-proposal-export-namespace-from';
 import pluginTransformModulesSystemJS from './babel-plugin-transform-modules-systemjs-patched.js';
 import pluginProposalDynamicImport from '@babel/plugin-proposal-dynamic-import';
-import pluginProposalDecorators from '@babel/plugin-proposal-decorators';
 
 var plugins = [
   pluginProposalExportDefaultFrom,
   pluginProposalExportNamespaceFrom,
-  babelPluginClassProperties,
+  babelPluginSyntaxClassProperties,
   babelPluginNumericSeparator,
   pluginProposalDynamicImport,
-  [pluginProposalDecorators, { decoratorsBeforeExport: true }],
   pluginTransformModulesSystemJS,
 ];
-var tsPreset = [[babelPresetTypeScript, {
-  allowDeclareFields: true,
-  onlyRemoveTypeImports: true
-}]];
+var tsPlugins = [
+  [babelPluginTransformTypeScript, {
+    onlyRemoveTypeImports: true
+  }],
+  pluginProposalExportDefaultFrom,
+  pluginProposalExportNamespaceFrom,
+  babelPluginSyntaxClassProperties,
+  babelPluginNumericSeparator,
+  pluginProposalDynamicImport,
+  pluginTransformModulesSystemJS,
+];
 var stage3Syntax = ['asyncGenerators', 'classProperties', 'classPrivateProperties', 'classPrivateMethods', 'dynamicImport', 'importMeta', 'nullishCoalescingOperator', 'numericSeparator', 'optionalCatchBinding', 'optionalChaining', 'objectRestSpread', 'topLevelAwait'];
 
 var global = typeof self !== 'undefined' ? self : global;
@@ -60,12 +65,11 @@ systemJSPrototype.fetch = function (url, options) {
             plugins: stage3Syntax,
             errorRecovery: true
           },
-          plugins: plugins,
-          presets: tsUrls.test(url) ? tsPreset : []
+          plugins: tsUrls.test(url) ? tsPlugins : plugins
         }, function (err, result) {
           if (err)
             return reject(err);
-          const code = result.code + '\n//# sourceURL=' + u + '!system';
+          const code = result.code + '\n//# sourceURL=' + url + '!system';
           resolve(new Response(new Blob([code], { type: 'application/javascript' })));
         });
       })
