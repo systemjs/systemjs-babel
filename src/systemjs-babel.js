@@ -5,30 +5,41 @@ import * as babel from '@babel/core';
 import babelPluginTransformTypeScript from '@babel/plugin-transform-typescript';
 import babelPluginSyntaxClassProperties from '@babel/plugin-syntax-class-properties';
 import babelPluginNumericSeparator from '@babel/plugin-proposal-numeric-separator';
-import pluginProposalExportDefaultFrom from '@babel/plugin-proposal-export-default-from';
-import pluginProposalExportNamespaceFrom from '@babel/plugin-proposal-export-namespace-from';
-import pluginTransformModulesSystemJS from './babel-plugin-transform-modules-systemjs-patched.js';
-import pluginProposalDynamicImport from '@babel/plugin-proposal-dynamic-import';
+import babelPluginProposalExportDefaultFrom from '@babel/plugin-proposal-export-default-from';
+import babelPluginProposalExportNamespaceFrom from '@babel/plugin-proposal-export-namespace-from';
+import babelPluginTransformModulesSystemJS from '@babel/plugin-transform-modules-systemjs';
+import babelPluginProposalDynamicImport from '@babel/plugin-proposal-dynamic-import';
+import babelPluginTransformReactJsx from '@babel/plugin-transform-react-jsx';
 
-var plugins = [
-  pluginProposalExportDefaultFrom,
-  pluginProposalExportNamespaceFrom,
+const plugins = [
+  babelPluginProposalExportDefaultFrom,
+  babelPluginProposalExportNamespaceFrom,
   babelPluginSyntaxClassProperties,
   babelPluginNumericSeparator,
-  pluginProposalDynamicImport,
-  pluginTransformModulesSystemJS,
+
+  babelPluginProposalDynamicImport,
+  babelPluginTransformModulesSystemJS,
 ];
-var tsPlugins = [
+
+const tsPlugins = [
   [babelPluginTransformTypeScript, {
     onlyRemoveTypeImports: true
   }],
-  pluginProposalExportDefaultFrom,
-  pluginProposalExportNamespaceFrom,
-  babelPluginSyntaxClassProperties,
-  babelPluginNumericSeparator,
-  pluginProposalDynamicImport,
-  pluginTransformModulesSystemJS,
+  ...plugins
 ];
+const tsxPlugins = [
+  [babelPluginTransformTypeScript, {
+    isTSX: true,
+    onlyRemoveTypeImports: true
+  }],
+  babelPluginTransformReactJsx,
+  ...plugins
+];
+const jsxPlugins = [
+  babelPluginTransformReactJsx,
+  ...plugins
+];
+
 var stage3Syntax = ['asyncGenerators', 'classProperties', 'classPrivateProperties', 'classPrivateMethods', 'dynamicImport', 'importMeta', 'nullishCoalescingOperator', 'numericSeparator', 'optionalCatchBinding', 'optionalChaining', 'objectRestSpread', 'topLevelAwait'];
 
 var global = typeof self !== 'undefined' ? self : global;
@@ -39,7 +50,9 @@ systemJSPrototype.shouldFetch = function () {
 };
 
 var jsonCssWasmContentType = /^(application\/json|application\/wasm|text\/css)(;|$)/;
-var tsUrls = /^[^#?]+\.ts([?#].*)?$/;
+var jtsxUrls = /^[^#?]+\.(tsx?|jsx)([?#].*)?$/;
+var tsxUrls = /^[^#?]+\.tsx([?#].*)?$/;
+var jsxUrls = /^[^#?]+\.jsx([?#].*)?$/;
 var registerRegEx = /^\s*(\/\*[^\*]*(\*(?!\/)[^\*]*)*\*\/|\s*\/\/[^\n]*)*\s*System\s*\.\s*register\s*\(\s*(\[[^\]]*\])\s*,\s*\(?function\s*\(\s*([^\),\s]+\s*(,\s*([^\),\s]+)\s*)?\s*)?\)/;
 
 var fetch = systemJSPrototype.fetch;
@@ -65,7 +78,7 @@ systemJSPrototype.fetch = function (url, options) {
             plugins: stage3Syntax,
             errorRecovery: true
           },
-          plugins: tsUrls.test(url) ? tsPlugins : plugins
+          plugins: jtsxUrls.test(url) ? tsxUrls.test(url) ? tsxPlugins : jsxUrls.test(url) ? jsxPlugins : tsPlugins : plugins
         }, function (err, result) {
           if (err)
             return reject(err);
