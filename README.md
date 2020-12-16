@@ -29,6 +29,10 @@ npm install systemjs-babel
 </script>
 ```
 
+_Explicit file extensions are required for loading dependencies. For TypeScript this means including the `.ts` extension for relative dependency imports just like Deno._
+
+Bare specifiers are mapped with [import maps](https://github.com/systemjs/systemjs/blob/master/docs/import-maps.md), so file extensions remain optional.
+
 **Not Suitable for Production Workflows**
 
 ## LICENSE
