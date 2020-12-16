@@ -21,6 +21,10 @@ npm install systemjs-babel
 <script src="systemjs/dist/s.js"></script>
 <script src="dist/systemjs-babel.js"></script>
 <script>
+  // TypeScript modules supported with ".ts" extension
+   System.import('./ts-module.ts');
+  
+  // ES modules
   System.import('./es-module.js');
 </script>
 ```
