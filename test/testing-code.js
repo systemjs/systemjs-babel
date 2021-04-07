@@ -3,9 +3,9 @@ export async function p() {
 }
 
 function * responseTime (next) {
-  let start = new Date()
+  let start = Date.now()
   yield next
-  var ms = new Date() - start
+  var ms = Date.now() - start
   this.set('X-Response-Time', ms + 'ms')
 }
 
