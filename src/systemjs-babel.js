@@ -53,7 +53,7 @@ var jsonCssWasmContentType = /^(application\/json|application\/wasm|text\/css)(;
 var jtsxUrls = /^[^#?]+\.(tsx?|jsx)([?#].*)?$/;
 var tsxUrls = /^[^#?]+\.tsx([?#].*)?$/;
 var jsxUrls = /^[^#?]+\.jsx([?#].*)?$/;
-var registerRegEx = /\s*(\/\*[^\*]*(\*(?!\/)[^\*]*)*\*\/|\s*\/\/[^\n]*)*\s*System\s*\.\s*register\s*\(\s*(\[[^\]]*\])\s*,\s*\(?function\s*\(\s*([^\),\s]+\s*(,\s*([^\),\s]+)\s*)?\s*)?\)/;
+var registerRegEx = /System\s*\.\s*register\s*\(\s*(\[[^\]]*\])\s*,\s*\(?function\s*\(\s*([^\),\s]+\s*(,\s*([^\),\s]+)\s*)?\s*)?\)/;
 
 var fetch = systemJSPrototype.fetch;
 systemJSPrototype.fetch = function (url, options) {
